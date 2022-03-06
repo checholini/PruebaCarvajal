@@ -1,0 +1,72 @@
+﻿@using UserLogin.Models
+@model ModelLoader
+@{
+    Layout = "_Layout"; ViewData["Title"] = "Crear Usuario";
+}
+
+@if (Model.userModel == null)
+{
+    <a asp-action="Index" class="btn btn-sm btn-secondary">Volver</a>
+
+    <form method="post">
+        <div class="row g-3">
+            <div class="col-md-6 mb-3">
+                <label for="nameImput" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="nameImput">
+                @if (ViewData["CreateNameImput"] != null)
+                {
+                    <div class="form-text text-danger">@ViewData["CreateNameImput"]</div>
+                }
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="lastNameImput" class="form-label">Apellido</label>
+                <input type="text" class="form-control" name="lastNameImput">
+                @if (ViewData["CreateLastNameImput"] != null)
+                {
+                    <div class="form-text text-danger">@ViewData["CreateLastNameImput"]</div>
+                }
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="mailInput" class="form-label">Correo electronico</label>
+                <input type="email" class="form-control" name="mailInput">
+                @if (ViewData["CreateMailInput"] != null)
+                {
+                    <div class="form-text text-danger">@ViewData["CreateMailInput"]</div>
+                }
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="passwordInput" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" name="passwordInput">
+                @if (ViewData["CreatePasword"] != null)
+                {
+                    <div class="form-text text-danger">@ViewData["CreatePasword"]</div>
+                }
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="docTypeInput" class="form-label">Tipo de documento</label>
+                @Html.DropDownListFor(x => Model.docTypeModel , new SelectList(Model.docTypeModel, "Id", "Name"), htmlAttributes: new { @class = "form-control", @name="docTypeInput"})
+            </div>
+            <div class="col-md-6">
+                <label for="docNumInput" class="form-label">Numero de documento</label>
+                <input type="text" class="form-control" name="docNumInput">
+                @if (ViewData["CreateDocNumInput"] != null)
+                {
+                    <div class="form-text text-danger">@ViewData["CreateDocNumInput"]</div>
+                }
+            </div>
+        </div>
+        <div class="text-center align-content-center">
+            <div class="form-row">
+                <button class="btn btn-primary">Crear Cuenta</button>
+            </div>
+        </div>
+    </form>
+
+}
+@if (Model.userModel != null)
+{
+    <div class="text-center">
+        <h1 class="display-4">El usuario se creo exitosamente</h1>
+        <a asp-action="Index" class="btn btn-sm btn-secondary">Volver</a>
+    </div>
+}
